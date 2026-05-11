@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>銀河機場接送</title>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+<style>
+body{
+  font-family:Arial,"Microsoft JhengHei";
+  background:#f5f6f7;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+
+.box{
+  background:#fff;
+  padding:40px;
+  border-radius:18px;
+  width:92%;
+  max-width:420px;
+  box-shadow:0 4px 18px rgba(0,0,0,.12);
+  text-align:center;
+}
+
+h2{
+  font-size:32px;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:20px;
+  line-height:1.8;
+}
+
+button{
+  width:100%;
+  padding:18px;
+  margin-top:20px;
+  border:none;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+  font-size:22px;
+  font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>銀河機場接送</h2>
+  <p id="status">正在初始化...</p>
+  <button onclick="start()" id="btn" disabled>進入表單</button>
+</div>
+
+<script>
+
+let userId = "";
+
+// ======================
+// LIFF 初始化
+// ======================
+async function init(){
+
+  try {
+
+    await liff.init({ liffId: "2010005375-A2USJzj3" });
+
+    // ❗ 沒登入 → 讓使用者點按鈕登入
+    if (!liff.isLoggedIn()) {
+      document.getElementById("status").innerText = "請點擊進入並登入 LINE";
+      document.getElementById("btn").disabled = false;
+      return;
+    }
+
+    const profile = await liff.getProfile();
+    userId = profile.userId;
+
+    document.getElementById("status").innerText = "已取得 LINE 帳號";
+    document.getElementById("btn").disabled = false;
+
+  } catch (err) {
+    console.log(err);
+    document.getElementById("status").innerText = "LIFF 初始化失敗";
+  }
+}
+
+init();
+
+// ======================
+// 按鈕觸發（login + redirect）
+// ======================
+function start(){
+
+  // 👉 如果沒登入，在這裡才 login
+  if (!liff.isLoggedIn()) {
+    liff.login();
+    return;
+  }
+
+  const baseUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLScUihvA-SnK4odrU-a58kgiWq4x4fH7ADDiP0FAkZtiB1hITw/viewform";
+
+  const url =
+    baseUrl +
+    "?usp=pp_url&entry.1568202435=" +
+    encodeURIComponent(userId);
+
+  window.location.href = url;
+}
+
+</script>
+
+</body>
+</html>
