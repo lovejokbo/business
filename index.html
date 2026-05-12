@@ -56,7 +56,7 @@ button{
 <body>
 
 <div class="box">
-  <h2>銀河機場接送</h2>
+  <h2>銀河商務接送</h2>
   <p id="status">正在初始化...</p>
   <button onclick="start()" id="btn" disabled>進入表單</button>
 </div>
@@ -72,7 +72,7 @@ async function init(){
 
   try {
 
-    await liff.init({ liffId: "2010005375-A2USJzj3" });
+    await liff.init({ liffId: "2010005375-A5uCueCI" });
 
     // ❗ 沒登入 → 讓使用者點按鈕登入
     if (!liff.isLoggedIn()) {
@@ -107,11 +107,11 @@ function start(){
   }
 
   const baseUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLScUihvA-SnK4odrU-a58kgiWq4x4fH7ADDiP0FAkZtiB1hITw/viewform";
+    "https://docs.google.com/forms/d/e/1FAIpQLScVQDJs6h4xONJIxmMC_LNUHlcvbmj43xNGC4nVJZ0Cpjbs9w/viewform?usp=header";
 
   const url =
     baseUrl +
-    "?usp=pp_url&entry.1568202435=" +
+    "?usp=pp_url&entry.1037511777=" +
     encodeURIComponent(userId);
 
   window.location.href = url;
