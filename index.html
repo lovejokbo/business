@@ -29,8 +29,17 @@ body{
 }
 
 h2{
-  font-size:32px;
+  font-size:30px;
   margin-bottom:20px;
+  line-height:1.4;
+}
+
+.sub-title{
+  display:block;
+  font-size:16px;
+  font-weight:normal;
+  margin-top:8px;
+  white-space:nowrap;
 }
 
 p{
@@ -56,7 +65,10 @@ button{
 <body>
 
 <div class="box">
-  <h2>銀河車旅｜商務接送（全車系皆提供專業西裝司機接待服務)</h2>
+  <h2>
+  銀河車旅｜商務接送
+  <span class="sub-title">全車系皆提供專業西裝司機接待服務</span>
+</h2>
   <p id="status">正在初始化...</p>
   <button onclick="start()" id="btn" disabled>進入表單</button>
 </div>
